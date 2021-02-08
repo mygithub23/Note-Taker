@@ -1,0 +1,36 @@
+<%- include('partials/head')%>
+
+<%- include('partials/navbar')%>
+
+
+    <div class="col-lg-8">        
+      <main>
+        <div class="contact-clean">
+          <form method="">
+            <h2 class="text-center">Note Id: <%= note.id %></h2>            
+            <div class="form-group">
+              <textarea autofocus readonly
+                class="form-control-t"
+                name="title"
+                placeholder="Title"
+                rows="1"><%= note.title %> 
+              </textarea>
+              
+            </div>
+            <div class="form-group">
+              <textarea readonly
+                class="form-control"
+                name="message"
+                placeholder="Message"
+                rows="20"
+              ><%= note.text %> </textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Edit</button>
+            </div>
+          </form>
+        </div>
+      </main>
+      </div>
+    </div>
+    <%- include('partials/footer')%>

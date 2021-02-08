@@ -1,0 +1,27 @@
+<div class="row">
+    <nav
+      id="sidebarMenu"
+      class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+    >
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <% for(let note of notesData) { %>
+          <i class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/notes/show/<%= note.id %>"
+            >
+              <%= note.title %> 
+            </a></i
+          >
+          <% } %>
+        </ul>
+        <div>
+          <a href="/notes/new" class="btn btn-primary btn-lg " role="button" aria-disabled="false">Add Note</a>
+        </div>
+        
+<!-- <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Link</a> -->
+
+      </div>
+    </nav>

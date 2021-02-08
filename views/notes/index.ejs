@@ -1,0 +1,34 @@
+
+<%- include('partials/head')%>
+
+<h1>Displaying all Notes</h1>
+
+<div role="tablist" id="accordion-1">
+    <% for(let note of notesData) { %>
+    <div class="card">
+        <div class="card-header" role="tab">
+            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" class="collapsible-link" aria-controls='accordion-<%= note.id %> .item-<%= note.id %>' href='#accordion-1 .item-<%= note.id %>'><%= note.date %> - <%= note.title %></a></h5>
+        </div>
+        <div class="item-<%= note.id %> collapse" role="tabpanel" data-parent='#accordion-1'>
+            <div class="card-body">
+                <p class="card-text"> <%= note.text %> </p>
+                <hr>
+                <div class="controle-btn">
+                    <a class="btn btn-primary" href='/notes/<%= note.id %>/edit' role="button">Edit</a>              
+                    <a class="btn btn-primary" href='/notes/<%= note.id %>' role="button">Delete</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <% } %> 
+</div>
+<div>
+    <hr>
+    <hr>
+</div>
+<div>
+    <a href="/notes/new" class="btn btn-primary btn-lg " role="button" aria-disabled="false">Add Note</a>
+  </div>
+
+<%- include('partials/footer')%>
