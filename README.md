@@ -5,7 +5,6 @@
   https://github.com/mygithub23/Note-Taker
   <br />
    
-   
 
   <h3 align="center">Note Taker</h3>
 
@@ -122,4 +121,6 @@ This project is [MIT](https://choosealicense.com/licenses/MIT/) licensed.<br />
 Contact the author with any questions!<br>
 * Twitter:      [@myTwitterHandle](https://twitter.com/@myTwitterHandle)
 * Github link:  @[mygithub23](https://github.com/mygithub23)<br>
-* Email:        ali.alaoui@gmail.com
+* Email:        ali.alaoui@gmail.co
+* heroku:       https://notes-taker-manager.herokuapp.com/ 
+* heroku git:  https://git.heroku.com/notes-taker-manager.git

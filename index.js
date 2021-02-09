@@ -27,22 +27,9 @@ app.use(express.json());
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-//  const dataJSON = notes.getNotes;
-//  log(dataJSON)
- //let notesData = notes.getNotes()
-
-
-// log(" =====================================");
-// log("                           ");
-// log("                           ");
-// log("                           ");
-// log(" =====================================");
-// log(JSON.parse(dataJSON))
-// const notesData = JSON.parse(dataJSON);
 
 
 
@@ -62,39 +49,15 @@ const addNotes = (title, text) => {
 
     try {
         const notes = loadNotes()
-      
-        log(" =====================================");
-        log("                           ");
-        log("      NOTES FROM LOADNOTES()                     ");
-        log(notes)
-        log("                           ");
-        log(" =====================================");
+  
         const note = new NoteObj(
             uuidv4(),
             title,
             text,
             timeStamp()
-        )
-        
-        log(" =====================================");
-        log("                           ");
-        log("    NOTES BOFORE PUSH                       ");
-        log(notes)
-        log("                           ");
-        log(" =====================================");
-
+        )      
         notes.push(note);
-
-        
-        log(" =====================================");
-        log("                           ");
-        log("         NOTES  AFTER PUSH                ");
-        log(notes)
-        log("                           ");
-        log(" =====================================");
-        saveNotes(notes)
-        log("*************************** Note added")
-        
+        saveNotes(notes)       
     } catch (err) {
         log(`Error on  function: ${console.error(err)}`);
         log(`Error name: ${err.name}`)
@@ -152,28 +115,11 @@ const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
         const dataJSON = dataBuffer.toString()
-        log(dataJSON)
-        log("00000000000000000000000000000000000")
-        log(" =====================================");
-        log("                           ");
-        log("                           ");
-        log("                           ");
-        log(" =====================================");
-        log(JSON.parse(dataJSON))
         return JSON.parse(dataJSON)
     } catch (e) {
         return []
     }
 }
-
-
-// log(" =====================================");
-// log("                           ");
-// log("                           ");
-// log("                           ");
-// log(" =====================================");
-
-
 
 
 // Display all Notes
@@ -230,12 +176,6 @@ app.patch('/notes/:id',(req, res)=>{
 })
 
 
-//Get a note
-// reapp.get('notes/:id',(req,res) => {
-//     const { id } = req.params;
-//     const note = notesData.find(i => i.id === id)
-//     s.render('notes/show', { notesData, note })
-// })
 
 //Get a note
 app.get('/notes/:id',(req,res) => {
