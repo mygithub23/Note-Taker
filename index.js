@@ -121,6 +121,11 @@ const loadNotes = () => {
     }
 }
 
+// Display all Notes
+app.get('/',(req,res) => {
+    // log("rendring notes")
+    res.render('notes/index', { notesData })
+})
 
 // Display all Notes
 app.get('/notes',(req,res) => {
