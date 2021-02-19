@@ -18,6 +18,7 @@ app.use(express.json());
  // for put, patch and delete requests
 app.use(methodOverride('_method'));
 
+let notesData = require('./notes.json')
 
 // Views folder and EJS setup:
 app.set('views', path.join(__dirname, 'views'))
@@ -38,12 +39,14 @@ const saveNotes =  function (notes) {
         log("=====================================================")  
         log("=====================================================") 
         const dataJSON = JSON.stringify(notes);
+        const notesData2=JSON.parse(dataJSON);
+
         fs.writeFileSync('notes.json', dataJSON)
         log(" saveNote 3 =====================================================")  
         log("=====================================================")  
         log("=====================================================")  
-        
-        log("Saved localNotes --->", localNotes)
+        log("Saved localNotes --->", dataJSON)
+        log("Saved localNotes --->", notesData2)
 
         log(" saveNote 4 =====================================================")  
         log("=====================================================")  
@@ -84,9 +87,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-notesData = [
-    {"id":"f9f44f47-0513-4c72-8025-d863516de97c","title":"MDN ","text":"Using the card component, you can extend the default collapse behavior to create an accordion. To properly achieve the accordion style, be sure to use ","date":"Sun, Feb 07 2021"},
-    {"id":"0237e363-e13f-40b0-9300-3f1e7f020500","title":"EJS Template ","text":"Node.js date and time are handled with the Javascript Date object. It is loaded by default and requires no import of modules.","date":"Sun, Feb 07 2021"},
+notesData22 = [
+    {"id":"f9f44f47-0513-4c72-8025-d863516de97c","title":"MDN","text":"Using the card component, you can extend the default collapse behavior to create an accordion. To properly achieve the accordion style, be sure to use ","date":"Sun, Feb 07 2021"},
+    {"id":"0237e363-e13f-40b0-9300-3f1e7f020500","title":"EJS Template","text":"Node.js date and time are handled with the Javascript Date object. It is loaded by default and requires no import of modules.","date":"Sun, Feb 07 2021"},
     {"id":"358d7aa6-d272-48fc-ba27-6310a9ec32f3","title":"Developer","text":"Node.js date and time are handled with the Javascript Date object. It is loaded by default and requires no import of modules. ","date":"Sun, Feb 07 2021"},
     {"id":"426b175c-a305-4c7f-8e60-7ff2d47ed0aa","title":"Adam school at 9","text":"First day at school","date":"Sun, Feb 07 2021"},
     {"id":"8cc41f71-04b1-49aa-88bf-2573693f8508","title":"Team Meeting @9:30AM","text":"Meeting with client to review next project requirements.","date":"Sun, Feb 07 2021"}
@@ -162,7 +165,9 @@ app.post('/notes' ,(req, res) => {
         log("=====================================================")  
         log("=====================================================")  
        // addNotes(req.body.title, req.body.text);
+       saveNotes(notesData);
         res.redirect('/notes');      
+        
     } catch (err) {
         log(`Error on  function: ${console.error(err)}`);
         log(`Error name: ${err.name}`)
@@ -210,8 +215,9 @@ app.patch('/notes/:id',(req, res)=>{
     
     foundNote.title = newTtitle;
     foundNote.text = newText;
+    saveNotes(notesData);
     res.redirect('/notes')
-    //saveNotes(notesData);
+    
     
 
 
@@ -233,7 +239,9 @@ app.delete('/notes/:id',(req, res)=>{
     const { id } = req.params;
     notesData = notesData.filter(d => d.id !== id);
     //saveNotes(notesData)
+    saveNotes(notesData);
     res.redirect('/notes')
+ 
 })
 
 
