@@ -100,12 +100,50 @@ on project root directory type >> npm install
 
 ## Usage 
 ```
-How to use the project - We can use Inquirer for this. The module includes a number of methods for various types of prompts, which are roughly analogous to HTML form controls. In order to collect the user’s GitHub username and password, we’re going to use the input and password types respectively.
+How to use the project - 
+Click on any note to view note detail
+Click on any note to view note detail
+click on Edit to edit note
+Click on Delete to delete note
 ```
 
 ## How to test
 ```
-how to test the project - Require steps We can use Inquirer for this. The module includes a number of methods for various types of prompts, which are roughly analogous to HTML form controls. In order to collect the user’s GitHub username and password, we’re going to use the input and password types respectively. 
+node index.js
+
+// Click on any note to view note detail
+app.get('/notes',(req,res) => {
+    res.render('notes/index', { notesData })
+})
+
+click on Edit to edit note
+
+//Edit/Update a note
+app.patch('/notes/:id',(req, res)=>{
+    const { id } = req.params;
+    const foundNote = notesData.find(i => i.id === id)
+    const newTtitle = req.body.title;
+    const newText = req.body.text;
+    foundNote.title = newTtitle;
+    foundNote.text = newText;
+    res.redirect('/notes')
+})
+
+//Edit form - need method-override 
+app.get('/notes/:id/edit',(req,res) => {
+    const { id } = req.params; 
+    const note = notesData.find(i => i.id === id)
+    res.render('notes/edit', { note })
+})
+
+Click on Delete to delete note
+app.delete('/notes/:id',(req, res)=>{
+    const { id } = req.params;
+    notesData = notesData.filter(d => d.id !== id);
+    //saveNotes(notesData)
+    res.redirect('/notes')
+})
+
 ```
 
 <!-- LICENSE -->

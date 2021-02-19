@@ -213,7 +213,7 @@ app.patch('/notes/:id',(req, res)=>{
     res.redirect('/notes')
     //saveNotes(notesData);
     
-    //res.render('notes/index', { notesData })
+
 
 })
 
