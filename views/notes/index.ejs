@@ -7,7 +7,16 @@
     <% for(let note of notesData) { %>
     <div class="card">
         <div class="card-header" role="tab">
-            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" class="collapsible-link" aria-controls='accordion-<%= note.id %> .item-<%= note.id %>' href='#accordion-1 .item-<%= note.id %>'><%= note.date %> - <%= note.title %></a></h5>
+            <h5 class="mb-0">
+                <a 
+                    data-toggle="collapse" 
+                    aria-expanded="false" 
+                    class="collapsible-link" 
+                    aria-controls='accordion-<%= note.id %> .item-<%= note.id %>' 
+                    href='#accordion-1 .item-<%= note.id %>'>
+                    <%= note.date %> - <%= note.title %>
+                </a>
+            </h5>
         </div>
         <div class="item-<%= note.id %> collapse" role="tabpanel" data-parent='#accordion-1'>
             <div class="card-body">
@@ -30,5 +39,5 @@
 <div>
     <a href="/notes/new" class="btn btn-primary btn-lg " role="button" aria-disabled="false">Add Note</a>
   </div>
-
+<!-- <script>window.location(true);</script> -->
 <%- include('partials/footer')%>
